@@ -48,5 +48,14 @@ public class EmployeeService {
          return modelMapper.map(employeeList,new TypeToken<ArrayList<EmployeeDTO>>(){}.getType());
 
         }
+
+    public EmployeeDTO searchEmployee(int empID){
+        if (employeeRepo.existsById(empID)){
+            Employee employee = employeeRepo.findById(empID).orElse(null);
+            return modelMapper.map(employee,EmployeeDTO.class);
+        }else {
+            return null;
+        }
+     }
     }
 
